@@ -1,30 +1,25 @@
 {
   "name": "iris",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TomFranssen/iris.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TomFranssen/iris/issues"
-  },
-  "homepage": "https://github.com/TomFranssen/iris#readme",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "browser-sync": "^2.18.13",
-    "browserify": "^14.4.0",
-    "ejs": "^2.5.7",
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.0",
     "express": "^4.15.4",
-    "gulp": "^3.9.1",
-    "gulp-live-server": "0.0.31",
+    "foreman": "^2.0.0",
+    "marked": "^0.3.6",
+    "mongoose": "^4.11.10",
+    "nodemon": "^1.12.0",
     "react": "^15.6.1",
-    "reactify": "^1.1.1",
-    "vinyl-source-stream": "^1.1.0"
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.13"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start-dev": "nf start -p 3000",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
