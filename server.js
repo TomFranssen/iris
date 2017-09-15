@@ -79,3 +79,24 @@ router.route('/comments')
             res.json({message: 'Comment successfully added!'});
         });
     });
+
+
+
+router.route('/events')
+    .get(function (req, res) {
+        Event.find(function (err, events) {
+            if (err)
+                res.send(err);
+            res.json(events)
+        });
+    })
+    .post(function (req, res) {
+        var event = new Event();
+        event.name = req.body.name;
+        event.date = req.body.date;
+        event.save(function (err) {
+            if (err)
+                res.send(err);
+            res.json({message: 'Event successfully added!'});
+        });
+    });

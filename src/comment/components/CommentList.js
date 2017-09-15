@@ -16,7 +16,7 @@ class CommentList extends Component {
                     {comment.text}
                 </Comment>
             )
-        })
+        });
         return (
             <div style={style.commentList}>
                 {commentNodes}
