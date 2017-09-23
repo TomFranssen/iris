@@ -12,7 +12,14 @@ const port = process.env.API_PORT || 3001;
 const Comment = require('./model/comments');
 const Event = require('./model/events');
 
-mongoose.connect('mongodb://iris:Welkom12345@ds133044.mlab.com:33044/iris');
+// mongoose.connect('mongodb://iris:Welkom12345@ds133044.mlab.com:33044/iris');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://iris:Welkom12345@ds133044.mlab.com:33044/iris', {
+    keepAlive: true,
+    reconnectTries: Number.MAX_VALUE,
+    useMongoClient: true
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -47,8 +54,9 @@ router.route('/comments/:comment_id')
             (req.body.author) ? comment.author = req.body.author : null;
             (req.body.text) ? comment.text = req.body.text : null;
             comment.save(function (err) {
-                if (err)
-                    res.send(err);
+                if (err) {
+                    return res.send(err);
+                }
                 res.json({message: 'Comment has been updated'});
             });
         });
@@ -74,8 +82,9 @@ router.route('/comments')
         comment.author = req.body.author;
         comment.text = req.body.text;
         comment.save(function (err) {
-            if (err)
-                res.send(err);
+            if (err) {
+                return res.send(err);
+            }
             res.json({message: 'Comment successfully added!'});
         });
     });
@@ -93,10 +102,14 @@ router.route('/events')
     .post(function (req, res) {
         var event = new Event();
         event.name = req.body.name;
-        event.date = req.body.date;
+        event.dates = req.body.eventdates;
+
+        console.log(req.body);
+
         event.save(function (err) {
-            if (err)
-                res.send(err);
+            if (err) {
+                return res.send(err);
+            }
             res.json({message: 'Event successfully added!'});
         });
     });
